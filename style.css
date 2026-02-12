@@ -1,0 +1,277 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffb3c1, #ffd6e0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  overflow-x: hidden;
+}
+
+/* ================= COMMON CARD ================= */
+.box {
+  position: relative;
+  background: linear-gradient(135deg, #ff5f8f, #ff3f78);
+  padding: 30px;
+  border-radius: 28px;
+  text-align: center;
+  width: 92vw;
+  max-width: 420px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+.hidden { display: none; }
+
+h1 {
+  color: white;
+  font-size: 1.7rem;
+}
+
+/* ================= PUZZLE ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: black;
+  padding: 1px;
+  margin: 15px 0;
+}
+
+.grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.grid img.selected {
+  outline: 2px solid white;
+}
+
+.grid img.snap {
+  transform: scale(1.08);
+}
+
+.hint {
+  color: #ffe6ee;
+  font-size: 1.4rem;
+  margin-top: 18px;
+}
+
+/* ================= QUESTION BOX ONLY ================= */
+#questionBox {
+  max-width: 560px;
+  width: 95vw;
+  padding: 42px 40px;
+  border-radius: 38px;
+  overflow: hidden;
+}
+
+#questionBox h1 {
+  font-size: clamp(2.6rem, 5vw, 3.2rem);
+  line-height: 1.25;
+}
+
+#questionBox button {
+  font-size: clamp(1.6rem, 3.5vw, 2rem);
+  padding: 16px 42px;
+}
+
+/* ================= BUTTONS ================= */
+button {
+  font-family: 'Pacifico', cursive;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff77a9, #ff4f8b);
+  color: white;
+  cursor: pointer;
+}
+
+.buttons {
+  position: relative;
+  height: 120px;
+}
+
+#noBtn { position: fixed; }
+
+/* ================= HEARTS ================= */
+.heart-confetti {
+  position: absolute;
+  inset: -12px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.question-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.heart-confetti span {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0;
+  animation: floatEdge 6s ease-in-out infinite;
+}
+
+@keyframes floatEdge {
+  0% { opacity: 0; transform: scale(0.7); }
+  20% { opacity: 1; }
+  100% {
+    transform: translate(
+      calc(-70px + 140px * var(--x)),
+      calc(-70px + 140px * var(--y))
+    ) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ================= FINAL RESULT ================= */
+#resultBox {
+  max-width: 560px;
+  padding: 45px 40px;
+}
+
+.final-img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  min-height: 220px;
+  margin: 0 auto 28px;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+#resultBox p {
+  font-size: 2rem;
+  line-height: 1.4;
+  color: white;
+}
+
+.red-heart {
+  color: #ff0000;
+  font-size: 1.6em;
+  margin-left: 6px;
+  text-shadow: 0 0 6px rgba(255,0,0,0.6);
+}
+
+/* ================= WRONG VERIFY EFFECT ================= */
+.wrong-cross {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  font-size: 6rem;
+  color: #ff2f55;
+  z-index: 9999;
+  animation: crossPop 0.6s ease forwards;
+}
+
+@keyframes crossPop {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  60% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+/* ================= VERIFY BUTTON FIX ================= */
+#verifyBtn {
+  font-size: 1.25rem;   /* slightly bigger text */
+  padding: 12px 28px;   /* controlled increase */
+  margin-top: 10px;
+}
+/* ================= PUZZLE TITLE FIX ================= */
+#puzzleBox h1 {
+  font-size: 1.45rem;      /* slightly reduced */
+  white-space: nowrap;     /* prevents line break */
+}
+/* ================= CURVED SUCCESS POPUP ================= */
+.success-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  width: 90vw;
+  max-width: 500px;
+  text-align: center;
+  animation: popIn 0.5s ease forwards;
+}
+
+.success-popup svg {
+  width: 100%;
+  height: auto;
+}
+/* ================= CONFETTI ================= */
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 14px;
+  z-index: 9999;
+  opacity: 0.9;
+  border-radius: 2px;
+  animation: fall linear forwards;
+  transform: translateY(0);
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+/* ================= DARE TEXT ================= */
+.dare-text {
+  color: #ffe6ee;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  animation: tease 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes tease {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+/* ================= LOGIN ================= */
+.login-sub {
+  color: #ffe6ee;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+#secretInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+#loginBtn {
+  font-size: 1.2rem;
+  padding: 12px 28px;
+}
+
+.login-message {
+  margin-top: 15px;
+  min-height: 24px;
+  color: white;
+  font-size: 1.1rem;
+}
+#secretSection {
+  margin-top: 15px;
+}

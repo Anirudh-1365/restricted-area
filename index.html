@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solve it for a Surprise 💖</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- ================= LOGIN ================= -->
+<div class="box" id="loginBox">
+  <h1>Restricted Area 💕</h1>
+  <p class="login-sub">Only the prettiest girl can enter 😌</p>
+
+<input type="text" id="nameInput" placeholder="Enter your name 💖">
+  <button id="nameBtn">Verify Name ✨</button>
+  
+<div id="secretSection" class="hidden">
+    <input type="text" id="secretInput" placeholder="Enter the secret word 💌">
+    <p id="secretHint" class="hint-text hidden">
+      Hint: It will be the name of our first daughter 💕
+    </p>
+    <button id="loginBtn">Unlock 💖</button>
+  </div>
+
+  <p id="loginMessage" class="login-message"></p>
+</div>
+  <p id="loginMessage" class="login-message"></p>
+</div>
+
+<!-- ================= PUZZLE ================= -->
+<div class="box hidden" id="puzzleBox">
+  <h1>Solve it for a Surprise 💝</h1>
+
+  <div class="grid" id="grid">
+    <img src="images/tile_6.jpg">
+    <img src="images/tile_3.jpg">
+    <img src="images/tile_10.jpg">
+    <img src="images/tile_8.jpg">
+    <img src="images/tile_5.jpg">
+    <img src="images/tile_11.jpg">
+    <img src="images/tile_4.jpg">
+    <img src="images/tile_2.jpg">
+    <img src="images/tile_1.jpg">
+    <img src="images/tile_12.jpg">
+    <img src="images/tile_7.jpg">
+    <img src="images/tile_9.jpg">
+  </div>
+
+  <p class="hint">Tap two pieces to swap them 💕</p>
+  <button id="verifyBtn">Verify 💌</button>
+</div>
+
+<!-- ================= QUESTION ================= -->
+<div class="box hidden" id="questionBox">
+  <div class="heart-confetti"></div>
+
+  <div class="question-content">
+    <h1>Will you be my Valentine? 💘</h1>
+    <p class="dare-text">I dare you to say no 😝</p>
+
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💖</button>
+      <button id="noBtn">NO 🙄</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FINAL RESULT ================= -->
+<div class="box hidden" id="resultBox">
+  <img src="images/yay.png" class="final-img" alt="Yay">
+  <p>See you on 13th bro!! 😎 <span class="red-heart">♥</span></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
